@@ -37,11 +37,6 @@ app.get("/", globalLimiter,(req, res) => {
     res.render("login",);
 });
 
-// // Serve a basic form for registration
-// app.get("/register",globalLimiter,slidingWindowLimiter,(req, res) => {
-//     res.render("login");
-// });
-
 const allowedUsers = [
     {
         role: "guest",
@@ -64,31 +59,15 @@ app.post("/register", setUserRole,slidingWindowLimiter, (req, res) => {
     const allowedUser = allowedUsers.find(user => user.role === role && user.password === password);
 
     if (allowedUser) {
-        // Check if the username is already registered
-        // const userExists = registeredUsers.some((user) => user.username === username);
-
-        // if (userExists) {
-        //     return res.render("login", {
-        //         title: "Register",
-        //         error: "This username is already taken.",
-        //         role,
-        //         username,
-        //     });
-        // }
-
-        // // Add user to the registeredUsers array
-        // registeredUsers.push({ username, role });
-
-        // Redirect to index page after successful registration
         return res.render("index");
     } else {
-        // // Render the registration page again with an error message
-        // return res.render("login", {
-        //     title: "Register",
-        //     error: "Invalid credentials. Registration not allowed.",
-        //     role,
-        //     username,
-        // });
+        // Render the registration page again with an error message
+        return res.render("login", {
+            title: "Register",
+            error: "Invalid credentials. Registration not allowed.",
+            role,
+            username,
+        });
         console.log("enter valid login");
     }
 });
@@ -106,10 +85,6 @@ app.get("/weather",slidingWindowLimiter,(req, res) => {
       res.send(result);
     });
   });
-
-
-
-
 
   app.get("*", (req, res) => {
     res.render("404", { title: "Page not found" });
