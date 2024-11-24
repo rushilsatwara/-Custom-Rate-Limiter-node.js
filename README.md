@@ -1,6 +1,6 @@
 # Custom Rate Limiter
 
-![Rate Limiter](https://example.com/rate-limiter-image.png) <!-- Optional image -->
+
 
 ## Overview
 
@@ -43,13 +43,7 @@ The application will start locally on [http://localhost:5000](http://localhost:5
 
 ---
 
-## API Endpoints
 
-### `POST /register`
-
-Register a new user with a specified role and username.
-
-**Request body**:
 
 ```json
 {
