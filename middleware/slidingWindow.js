@@ -15,12 +15,7 @@ const RATE_LIMITS = {
 // Rate limiter function based on sliding window algorithm   
 const slidingWindowLimiter = (req, res, next) => {
 
-  
-
-
-    const { limit, window } = RATE_LIMITS["admin"]; 
-
-
+      const { limit, window } = RATE_LIMITS["admin"]; 
 
     // In-memory storage for tracking request timestamps
     if (!global.requestLogs) global.requestLogs = {};
