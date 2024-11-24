@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login Page</title>
+  <link rel="stylesheet" href="/css/styles.css"> <!-- Optional CSS -->
+  <style>
+    body {
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f9;
+  margin: 0;
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.container {
+  background: #ffffff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+  margin-bottom: 20px;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+}
+
+label {
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+input {
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+button {
+  padding: 10px 15px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+
+
+  </style>
+</head>
+<body>
+    <form method="POST" action="/register">
+        <label>Username:</label>
+        <input type="text" name="username" required /><br />
+        <label>Role:</label>
+        <input type="text" name="role" required /><br />
+        <label>Password:</label>
+        <input type="password" name="password" required /><br />
+        <button type="submit">Register</button>
+    </form>
+</body>
+<script>
+  async function fetchWithRateLimitCheck(endpoint) {
+      try {
+          const response = await fetch(endpoint);
+          if (!response.ok) {
+              const errorData = await response.json();
+              if (errorData.error) {
+                  // Show a popup message
+                  showPopup(errorData.message);
+              }
+          } else {
+              const data = await response.json();
+              console.log(data); // Handle successful response
+          }
+      } catch (error) {
+          console.error("Error making request:", error);
+      }
+  }
+
+ 
+</script>
+
+</html>

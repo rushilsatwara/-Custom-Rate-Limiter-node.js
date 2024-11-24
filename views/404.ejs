@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>404 - Page Not Found</title>
+    <link rel="stylesheet" href="/css/404.css">
+    <style>
+        body {
+    margin: 0;
+    font-family: 'Arial', sans-serif;
+    background: linear-gradient(to bottom right, #ff758c, #ff7eb3);
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+}
+
+.container {
+    text-align: center;
+    padding: 20px;
+}
+
+.error-content {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    padding: 40px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+    animation: float 4s ease-in-out infinite;
+}
+
+.error-code {
+    font-size: 100px;
+    font-weight: bold;
+    color: #fff;
+    margin: 0;
+}
+
+.error-message {
+    font-size: 20px;
+    color: #ffe0e6;
+    margin: 10px 0 20px 0;
+}
+
+.home-button {
+    text-decoration: none;
+    font-size: 18px;
+    padding: 10px 20px;
+    background-color: #fff;
+    color: #ff7eb3;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: transform 0.3s, background-color 0.3s;
+}
+
+.home-button:hover {
+    transform: scale(1.1);
+    background-color: #ffefef;
+}
+
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="error-content">
+            <h1 class="error-code">404</h1>
+            <p class="error-message">Oops! The page you're looking for doesn't exist.</p>
+            <a href="/" class="home-button">Return to Homepage</a>
+        </div>
+    </div>
+</body>
+</html>
+

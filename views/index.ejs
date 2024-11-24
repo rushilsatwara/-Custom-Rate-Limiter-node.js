@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Home Page</title>
+    <link rel="stylesheet" href="css/styles.css" /> <!-- static path for public folder is already set in app.js -->
+    <style>
+   
+@keyframes gradientBG {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+.main-content {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding: 2rem;
+}
+
+.widget {
+    background: rgba(255, 255, 255, 0.95);
+    padding: 2.5rem;
+    border-radius: 30px;
+    box-shadow: 
+        0 10px 30px rgba(0, 0, 0, 0.15),
+        0 0 0 1px rgba(255, 255, 255, 0.2),
+        inset 0 0 80px rgba(255, 255, 255, 0.5);
+    width: 350px;
+    text-align: center;
+    transition: all 0.4s ease;
+    backdrop-filter: blur(10px);
+    position: relative;
+    overflow: hidden;
+}
+
+.widget::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255, 255, 255, 0.2),
+        transparent
+    );
+    transition: 0.5s;
+}
+
+.widget:hover::before {
+    left: 100%;
+}
+
+.widget:hover {
+    transform: translateY(-10px);
+    box-shadow: 
+        0 20px 40px rgba(0, 0, 0, 0.2),
+        0 0 0 1px rgba(255, 255, 255, 0.3),
+        inset 0 0 80px rgba(255, 255, 255, 0.6);
+}
+
+.weatherLocation {
+    margin-bottom: 2rem;
+    display: flex;
+    gap: 0.8rem;
+    position: relative;
+}
+
+.input-field {
+    flex: 1;
+    padding: 1rem 1.5rem;
+    border: 2px solid rgba(0, 0, 0, 0.1);
+    border-radius: 15px;
+    font-size: 1rem;
+    outline: none;
+    transition: all 0.3s ease;
+    background: rgba(255, 255, 255, 0.9);
+}
+
+.input-field:focus {
+    border-color: #6b9fff;
+    box-shadow: 0 0 15px rgba(107, 159, 255, 0.2);
+}
+
+.search-button {
+    padding: 1rem 1.8rem;
+    background: linear-gradient(135deg, #6b9fff, #3772ff);
+    border: none;
+    border-radius: 15px;
+    color: white;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-size: 0.9rem;
+}
+
+.search-button:hover {
+    background: linear-gradient(135deg, #3772ff, #6b9fff);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(107, 159, 255, 0.4);
+}
+
+.icon-and-weatherInfo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+    margin: 2.5rem 0;
+    padding: 1.5rem;
+    background: rgba(107, 159, 255, 0.1);
+    border-radius: 20px;
+}
+
+.weatherIcon {
+    width: 100px;
+    height: 100px;
+    background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 10px 20px rgba(255, 154, 158, 0.3);
+    position: relative;
+}
+
+.weatherIcon::after {
+    content: '☀️';
+    font-size: 3rem;
+}
+
+.temperature {
+    font-size: 3.5rem;
+    font-weight: bold;
+    background: linear-gradient(135deg, #1e2f97, #ff6b6b);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+    line-height: 1;
+    margin-bottom: 0.5rem;
+}
+
+.weatherInfo {
+    text-align: left;
+}
+
+.weatherCondition {
+    color: #666;
+    font-size: 1.4rem;
+    font-weight: 500;
+    margin-top: 0.5rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.additional-info {
+    margin-top: 20px;
+    padding: 10px;
+    background-color: #f0f8ff;
+    border-radius: 5px;
+    font-size: 16px;
+    color: #333;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.additional-info p {
+    margin: 5px 0;
+    line-height: 1.5;
+}
+
+.place {
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: #333;
+    margin: 1.5rem 0;
+    padding-bottom: 1.5rem;
+    border-bottom: 2px solid rgba(0, 0, 0, 0.1);
+}
+
+.date {
+    color: #666;
+    font-size: 1.1rem;
+    font-weight: 500;
+    letter-spacing: 1px;
+    margin-top: 1rem;
+}
+
+@media (max-width: 480px) {
+    .widget {
+        width: 100%;
+        padding: 1.5rem;
+    }
+    
+    .weatherLocation {
+        flex-direction: column;
+    }
+    
+    .icon-and-weatherInfo {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .weatherInfo {
+        text-align: center;
+    }
+}
+    </style>
+</head>
+<body>
+    <div class="main-content">
+        <!-- Header Section -->
+      
+
+        <!-- Weather Widget -->
+        <article class="widget">
+            <form class="weatherLocation" method="post" >
+                <input class="input-field"  placeholder="Enter city name" type="text" />
+                <button class="search-button">Search</button>
+            </form>
+
+            <!-- Weather Information Section -->
+            <div class="icon-and-weatherInfo">
+                <div class="weatherIcon"><i></i></div>
+                <div class="weatherInfo">
+                    <div class="temperature"><span></span></div>
+                    <div class="weatherCondition"></div>
+                </div>
+            </div>
+
+            <!-- Location and Date -->
+            <div class="place"></div>
+            <div class="date"></div>
+
+            <!-- Additional Weather Details -->
+            <div class="additional-info">
+                <p class="humidity"></p>
+                <p class="wind-speed"></p>
+                <p class="pressure"></p>
+                <p class="visibility"></p>
+                <p class="cloudiness"></p>
+            </div>
+        </article>
+    </div>
+
+
+
+<script>
+
+    // API endpoint for fetching weather data
+    const weatherApi = "/weather";
+    
+    // Select DOM elements
+    const weatherForm = document.querySelector("form");
+    const search = document.querySelector("input");
+    const weatherIcon = document.querySelector(".weatherIcon i");
+    const weatherCondition = document.querySelector(".weatherCondition");
+    const tempElement = document.querySelector(".temperature span");
+    const locationElement = document.querySelector(".place");
+    const dateElement = document.querySelector(".date");
+    
+    // Additional info DOM elements
+    const humidityElement = document.querySelector(".humidity");
+    const windSpeedElement = document.querySelector(".wind-speed");
+    const pressureElement = document.querySelector(".pressure");
+    const visibilityElement = document.querySelector(".visibility");
+    const cloudinessElement = document.querySelector(".cloudiness");
+    
+    // Set current date
+    const currentDate = new Date();
+    const options = { month: "long" };
+    const monthName = currentDate.toLocaleString("en-US", options);
+    dateElement.textContent = new Date().getDate() + ", " + monthName;
+    
+    // Form submit event listener
+    weatherForm.addEventListener("submit", (e) => {
+        e.preventDefault();
+        locationElement.textContent = "Loading...";
+        weatherIcon.className = "";
+        tempElement.textContent = "";
+        weatherCondition.textContent = "";
+    
+        // Clear additional weather info
+        humidityElement.textContent = "";
+        windSpeedElement.textContent = "";
+        pressureElement.textContent = "";
+        visibilityElement.textContent = "";
+        cloudinessElement.textContent = "";
+    
+        showData(search.value);
+    });
+    
+    // Geolocation to fetch weather by user's current location
+    if ("geolocation" in navigator) {
+        locationElement.textContent = "Fetching location...";
+        navigator.geolocation.getCurrentPosition(
+            (position) => {
+                const latitude = position.coords.latitude;
+                const longitude = position.coords.longitude;
+                const apiUrl = `https://nominatim.openstreetmap.org/reverse?format=json&lat=${latitude}&lon=${longitude}`;
+    
+                fetch(apiUrl)
+                    .then((response) => response.json())
+                    .then((data) => {
+                        if (data && data.address && data.address.city) {
+                            const city = data.address.city;
+                            showData(city);
+                        } else {
+                            console.error("City not found in location data.");
+                        }
+                    })
+                    .catch((error) => {
+                        console.error("Error fetching location data:", error);
+                    });
+            },
+            (error) => {
+                console.error("Error getting location:", error.message);
+            }
+        );
+    } else {
+        console.error("Geolocation is not available in this browser.");
+    }
+    
+    // Fetch weather data and update DOM
+    function showData(city) {
+    getWeatherData(city, (result) => {
+        if (result.cod === 429) {
+            // Handle rate limit exceeded error
+            locationElement.textContent = "Rate limit exceeded. Please try again later.";
+            alert("You have exceeded the maximum number of requests. Please try again in a few minutes.");
+        } else if (result.cod === 200) {
+            locationElement.textContent = result.name;
+            tempElement.textContent = (result.main.temp - 273.15).toFixed(2) + "°C";
+            weatherCondition.textContent = result.weather[0].description.toUpperCase();
+        } else {
+            locationElement.textContent = "City not found.";
+        }
+
+        // Update additional weather info
+        humidityElement.textContent = `Humidity: ${result.main.humidity}%`;
+        windSpeedElement.textContent = `Wind Speed: ${result.wind.speed} m/s`;
+        pressureElement.textContent = `Pressure: ${result.main.pressure} hPa`;
+        visibilityElement.textContent = `Visibility: ${result.visibility / 1000} km`;
+        cloudinessElement.textContent = `Cloudiness: ${result.clouds.all}%`;
+    });
+}
+
+
+function getWeatherData(city, callback) {
+    const locationApi = weatherApi + "?address=" + city;
+    fetch(locationApi)
+        .then((response) => response.json())
+        .then((response) => {
+            callback(response);
+        });
+}
+
+</script>    
+</body>
+</html>

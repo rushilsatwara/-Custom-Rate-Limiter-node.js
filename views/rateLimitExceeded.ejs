@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rate Limit Exceeded</title>
+    <link rel="stylesheet" href="/css/styles.css">
+    <style>
+        /* General Page Styling */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+h1 {
+    font-size: 24px;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+p {
+    font-size: 16px;
+    color: #666;
+}
+
+/* Error Page Styling */
+.error-container {
+    background-color: #fff;
+    padding: 30px;
+    max-width: 600px;
+    margin: 50px auto;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.error-container h1 {
+    color: #e74c3c;
+    font-size: 28px;
+}
+
+.error-container p {
+    margin: 15px 0;
+    color: #555;
+}
+
+.error-container strong {
+    color: #333;
+}
+
+.error-container a {
+    display: inline-block;
+    margin-top: 20px;
+    background-color: #3498db;
+    color: white;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.error-container a:hover {
+    background-color: #2980b9;
+}
+
+/* Login Form Styling */
+form {
+    width: 100%;
+    max-width: 400px;
+    margin: 50px auto;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+form input {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+form button {
+    width: 100%;
+    padding: 10px;
+    background-color: #3498db;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+form button:hover {
+    background-color: #2980b9;
+}
+
+/* Error Styling for Login Form */
+form input:invalid {
+    border-color: red;
+}
+
+form input:focus:invalid {
+    outline: 2px solid red;
+}
+
+    </style>
+</head>
+<body>
+    <div class="error-container">
+        <h1>Error: <%= code %> - <%= message %></h1>
+        <p><strong>Status:</strong> <%= status %></p>
+        <p><strong>Allowed Requests:</strong> <%= allowedRequests %> requests in the past <%= timeWindowSeconds %> seconds</p>
+        <p><strong>Retry After:</strong> <%= retryAfterSeconds %> seconds</p>
+        <p>Please try again after the specified waiting period.</p>
+        <a href="/" class="go-back-button">Go back to homepage</a>
+    </div>
+</body>
+</html>

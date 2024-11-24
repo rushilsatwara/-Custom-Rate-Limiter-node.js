@@ -1,0 +1,21 @@
+{
+  "name": "rate-limit",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon src/app.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "ejs": "^3.1.10",
+    "express": "^4.21.1",
+    "fs": "^0.0.1-security",
+    "hbs": "^4.2.0",
+    "nodemon": "^3.1.7",
+    "path": "^0.12.7",
+    "request": "^2.88.2"
+  }
+}
